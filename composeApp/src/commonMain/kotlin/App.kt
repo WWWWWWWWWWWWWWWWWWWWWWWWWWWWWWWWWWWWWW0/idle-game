@@ -142,7 +142,7 @@ private fun Generator(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         modifier = modifier
             .padding(8.dp)
-            .background(Color.Yellow, RoundedCornerShape(8.dp))
+            .background(Color(255,165,0), RoundedCornerShape(8.dp))
             .padding(8.dp)
     ) {
         Column {
