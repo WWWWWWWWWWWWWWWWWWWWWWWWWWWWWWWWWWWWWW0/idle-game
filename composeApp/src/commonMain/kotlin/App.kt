@@ -19,6 +19,7 @@ import idle_game.composeapp.generated.resources.llemopnade
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import util.Gelds
+import util.gelds
 import util.toHumanReadableString
 import vw.GameViewModel
 
@@ -55,6 +56,7 @@ fun Screen() {
                 derivedStateOf { gameState?.stashedMoney }
             }
             var showDialog by remember { mutableStateOf(false) }
+            var moneyButtonlevel by remember { mutableStateOf(1)}
 
             Image(
                 painterResource(Res.drawable.llemopnade),
@@ -88,8 +90,8 @@ fun Screen() {
 
                     ) {
 
-                        Text("Cash " + currentMoney?.toHumanReadableString(),
-                            style = MaterialTheme.typography.h4)
+                        Text("Cash: " + currentMoney?.toHumanReadableString(),
+                            style = MaterialTheme.typography.h5)
 
                     }
                 }
@@ -122,6 +124,18 @@ fun Screen() {
                     Text("Reset Game")
                 }
 
+                Button(
+                    onClick = {
+                        moneyButtonlevel += 1
+                    },
+                    modifier = Modifier.padding(18.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor = Color(255, 153, 51),
+                        contentColor = Color.White
+                    )
+                ) {
+                    Text("Upgrade Click")
+                }
 
                 gameState?.let { state ->
 
@@ -146,13 +160,23 @@ fun Screen() {
                     modifier = Modifier.offset(
                         x = 450.dp, y = 150.dp
                     ).width(470.dp).height(470.dp).clickable {
-                        viewModel.clickMoney(state)
+                        if (moneyButtonlevel == 1) {
+                            viewModel.clickMoney(state, 1.gelds)
+                        } else if (moneyButtonlevel == 2) {
+                            viewModel.clickMoney(state, 3.gelds)
+                        } else {
+                            viewModel.clickMoney(state, 5.gelds)
+                        }
                     }
                 )
             }
         }
     )
 }
+
+
+
+
 
 @Composable
 private fun Generator(
