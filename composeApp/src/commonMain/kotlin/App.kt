@@ -8,11 +8,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import idle_game.composeapp.generated.resources.Res
 import idle_game.composeapp.generated.resources.lemoande
+import idle_game.composeapp.generated.resources.lemonadestand
+import idle_game.composeapp.generated.resources.llemopnade
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import util.Gelds
@@ -53,7 +56,12 @@ fun Screen() {
             }
             var showDialog by remember { mutableStateOf(false) }
 
-
+            Image(
+                painterResource(Res.drawable.llemopnade),
+                contentScale = ContentScale.Crop,
+                contentDescription = "A square",
+                modifier = Modifier.fillMaxWidth().fillMaxHeight()
+            )
 
 
             Column(
@@ -74,17 +82,21 @@ fun Screen() {
                 ) {
                     Button(
                         modifier = Modifier.width(165.dp).height(115.dp).padding(20.dp),
+
+                        colors = ButtonDefaults.buttonColors(backgroundColor = Color(255,153,51)),
                         onClick = {}
 
                     ) {
 
-                        Text("Cash " + currentMoney?.toHumanReadableString())
+                        Text("Cash " + currentMoney?.toHumanReadableString(),
+                            style = MaterialTheme.typography.h4)
+
                     }
                 }
 
                 Box(
                     modifier = Modifier.offset(x = 500.dp, y = 100.dp)
-                        .background(Color(255, 165, 0), RoundedCornerShape(8.dp))
+                        .background(Color(100, 165, 0), RoundedCornerShape(8.dp))
                 )
 
 
@@ -93,7 +105,7 @@ fun Screen() {
 
 
                 Text(
-                    "diogodermonkausdemwaldnovomata",
+                    "Lemonade.io",
                     style = MaterialTheme.typography.h1,
                 )
                 Spacer(modifier = Modifier.height(16.dp))
@@ -110,17 +122,9 @@ fun Screen() {
                     Text("Reset Game")
                 }
 
+
                 gameState?.let { state ->
-                    Text(
-                        "Bank: ${currentMoney?.toHumanReadableString()} Gelds",
-                        style = MaterialTheme.typography.h4,
-                    )
-                    Button(
-                        modifier = Modifier.padding(18.dp),
-                        onClick = { viewModel.clickMoney(state) }
-                    ) {
-                        Text("Click To Sell Lemonade")
-                    }
+
 
                     state.availableJobs.forEach { availableJob ->
                         Generator(
