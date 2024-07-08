@@ -83,7 +83,7 @@ fun Screen() {
                     horizontalAlignment = Alignment.End
                 ) {
                     Button(
-                        modifier = Modifier.width(165.dp).height(115.dp).padding(20.dp),
+                        modifier = Modifier.width(185.dp).height(115.dp).padding(20.dp),
 
                         colors = ButtonDefaults.buttonColors(backgroundColor = Color(255,153,51)),
                         onClick = {}
