@@ -83,7 +83,7 @@ fun Screen() {
                     horizontalAlignment = Alignment.End
                 ) {
                     Button(
-                        modifier = Modifier.width(185.dp).height(115.dp).padding(20.dp),
+                        modifier = Modifier.width(165.dp).height(115.dp).padding(20.dp),
 
                         colors = ButtonDefaults.buttonColors(backgroundColor = Color(255,153,51)),
                         onClick = {}
@@ -128,7 +128,7 @@ fun Screen() {
                     onClick = {
                         moneyButtonlevel += 1
                     },
-                    modifier = Modifier.padding(18.dp),
+                    modifier = Modifier.padding(18.dp).width(10.dp).height(10.dp),
                     colors = ButtonDefaults.buttonColors(
                         backgroundColor = Color(255, 153, 51),
                         contentColor = Color.White
@@ -165,7 +165,7 @@ fun Screen() {
                         } else if (moneyButtonlevel == 2) {
                             viewModel.clickMoney(state, 3.gelds)
                         } else {
-                            viewModel.clickMoney(state, 5.gelds)
+                            viewModel.clickMoney(state, 1000.gelds)
                         }
                     }
                 )
